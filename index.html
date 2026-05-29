@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
   <!-- HTWK corporate-design theme (source of truth: htwk-branding skill) -->
-  <link rel="stylesheet" href="css/htwk-reveal.css">
+  <link rel="stylesheet" href="css/htwk-reveal.css?v=2">
   <!-- code highlighting (unused on most slides, harmless) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css">
 </head>
@@ -18,7 +18,8 @@
   <div class="slides">
 
     <!-- ====================================================== 1. TITLE -->
-    <section class="htwk-title htwk-tape" data-background-color="#ffffff">
+    <section class="htwk-title htwk-tape" data-background-gradient="linear-gradient(90deg,#FFED00 0,#FFED00 3%,#ffffff 3%,#ffffff 97%,#FFED00 97%,#FFED00 100%)">
+      <div class="wse-logo"><img src="assets/wse-logo.png" alt="WSE Research"></div>
       <div class="eyebrow">WSE Research at BEA 2026 · Shared Task 2</div>
       <h1>Multi-Strategy Rubric-Based<br>Short Answer Scoring for German</h1>
       <div class="subtitle">A system description: rubric-conditioned prompting, LoRA fine-tuning, and weighted-vote aggregation on ALICE-LP-1.0</div>
@@ -163,10 +164,10 @@
     <section data-background-color="#ffffff">
       <h2 class="htwk-ruled">Prompting: commercial vs. open-source</h2>
       <div class="htwk-bars">
-        <div class="htwk-bar-row"><span class="label">Rubric only</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:77%"></span></span><span class="val">0.654</span></div>
-        <div class="htwk-bar-row"><span class="label">+ smart few-shot</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:85%"></span></span><span class="val">0.718</span></div>
-        <div class="htwk-bar-row"><span class="label">Qwen3.5-27B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:85%"></span></span><span class="val">0.721</span></div>
-        <div class="htwk-bar-row us"><span class="label">Gemini 3 Flash</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:88%"></span></span><span class="val">0.748</span></div>
+        <div class="htwk-bar-row"><span class="label">Rubric only</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:65.4%"></span></span><span class="val">0.654</span></div>
+        <div class="htwk-bar-row"><span class="label">+ smart few-shot</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:71.8%"></span></span><span class="val">0.718</span></div>
+        <div class="htwk-bar-row"><span class="label">Qwen3.5-27B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:72.1%"></span></span><span class="val">0.721</span></div>
+        <div class="htwk-bar-row us"><span class="label">Gemini 3 Flash</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:74.8%"></span></span><span class="val">0.748</span></div>
       </div>
       <p style="font-size:0.74em; margin-top:0.5em;">(trial set, QWK)</p>
       <ul style="font-size:0.76em;">
@@ -191,14 +192,15 @@
       <h2 class="htwk-ruled">Fine-tuning: open-source closes the gap</h2>
       <div class="htwk-cols">
         <div class="htwk-bars">
-          <div class="htwk-bar-row"><span class="label">Qwen2.5-7B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:85%"></span></span><span class="val">0.726</span></div>
-          <div class="htwk-bar-row"><span class="label">Qwen2.5-14B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:89%"></span></span><span class="val">0.753</span></div>
-          <div class="htwk-bar-row"><span class="label">Qwen3.5-9B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:89%"></span></span><span class="val">0.756</span></div>
-          <div class="htwk-bar-row us"><span class="label">Qwen2.5-32B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:91%"></span></span><span class="val">0.769</span></div>
-          <div class="htwk-bar-row"><span class="label">Qwen2.5-72B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:90%"></span></span><span class="val">0.768</span></div>
+          <div class="htwk-bar-row"><span class="label">Qwen2.5-7B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:72.6%"></span></span><span class="val">0.726</span></div>
+          <div class="htwk-bar-row"><span class="label">Qwen2.5-14B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:75.3%"></span></span><span class="val">0.753</span></div>
+          <div class="htwk-bar-row"><span class="label">Qwen3.5-9B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:75.6%"></span></span><span class="val">0.756</span></div>
+          <div class="htwk-bar-row us"><span class="label">Qwen2.5-32B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:76.9%"></span></span><span class="val">0.769</span></div>
+          <div class="htwk-bar-row"><span class="label">Qwen2.5-72B</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:76.8%"></span></span><span class="val">0.768</span></div>
+          <div class="htwk-bar-row ref"><span class="label">Gemini 3 Flash</span><span class="htwk-bar-track"><span class="htwk-bar-fill" style="width:74.8%"></span></span><span class="val">0.748</span></div>
         </div>
         <div>
-          <p style="font-size:0.78em;"><strong>LoRA, out-of-sample (trial).</strong> Dashed line = Gemini 0.748.</p>
+          <p style="font-size:0.78em;"><strong>LoRA, out-of-sample (trial).</strong> Grey bar = Gemini commercial baseline.</p>
           <ul style="font-size:0.76em;">
             <li><strong>14B and 32B beat Gemini</strong> on unbiased out-of-sample QWK.</li>
             <li><strong>Generation &gt; size:</strong> Qwen3.5-9B (0.756) edges Qwen2.5-14B (0.753).</li>

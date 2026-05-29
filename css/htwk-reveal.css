@@ -43,6 +43,9 @@
   --r-main-font-size: 30px;
 }
 
+/* keep decorative Tapes from sitting under slide content */
+.reveal .slides section.htwk-tape { padding-left: 4.5%; padding-right: 4.5%; }
+
 /* --- Base ----------------------------------------------------------------- */
 .reveal { font-family: var(--r-main-font); color: var(--htwk-schwarz); }
 .reveal .slides { text-align: left; }            /* CD: left-aligned, Weißraum */
@@ -72,19 +75,10 @@
 }
 
 /* --- The Tape: two vertical bars derived from the logo's "H" -------------- */
-/* Decorative; sits behind content. Add class to a <section>.                */
-.reveal .slides section.htwk-tape::before,
-.reveal .slides section.htwk-tape::after {
-  content: ""; position: absolute; top: 8%; height: 84%;
-  width: 4.2vw; background: var(--htwk-gelb); z-index: -1;
-}
-.reveal .slides section.htwk-tape::before { left: -3vw; }
-.reveal .slides section.htwk-tape::after  { right: -3vw; }
-/* outline variant (Tape B "Kontur") */
-.reveal .slides section.htwk-tape-outline::before,
-.reveal .slides section.htwk-tape-outline::after {
-  background: transparent; border: 0.35vw solid var(--htwk-gelb);
-}
+/* Draw the bars as a FULL-BLEED slide-background gradient — reliable and     */
+/* symmetric regardless of reveal's content centring. On the <section> set:   */
+/*   data-background-gradient="linear-gradient(90deg,#FFED00 0,#FFED00 3%,#fff 3%,#fff 97%,#FFED00 97%,#FFED00 100%)" */
+/* and add class "htwk-tape" so the content keeps clear of the bars.          */
 
 /* --- Title slide ---------------------------------------------------------- */
 .reveal .htwk-title { text-align: left; }
@@ -111,6 +105,9 @@
   z-index: 30;
 }
 .reveal .htwk-logo img { height: 100%; width: auto; display: block; }
+/* WSE Research team mark (cube) — sits opposite the HTWK logo */
+.reveal .wse-logo { position: absolute; top: 5%; right: 4.5%; height: 13%; z-index: 30; }
+.reveal .wse-logo img { height: 100%; width: auto; display: block; }
 .reveal .htwk-footer {
   position: absolute; bottom: 3.6%; right: 3.5%;
   font-family: var(--r-code-font); font-size: 0.42em; color: var(--htwk-muted);
@@ -124,9 +121,11 @@
 .htwk-bar-row { display: grid; grid-template-columns: 8.5em 1fr auto; align-items: center; gap: 0.6em; margin: 0.32em 0; }
 .htwk-bar-row .label { font-weight: 600; }
 .htwk-bar-track { background: var(--htwk-silbergrau); height: 1.05em; border-radius: 1px; position: relative; }
-.htwk-bar-fill { background: var(--htwk-blau); height: 100%; border-radius: 1px; }
+.htwk-bar-fill { display: block; background: var(--htwk-blau); height: 100%; border-radius: 1px; min-width: 2px; }
 .htwk-bar-row.us  .htwk-bar-fill { background: var(--htwk-gelb); }   /* highlight our result */
 .htwk-bar-row.us  .label { color: #000; }
+.htwk-bar-row.ref .htwk-bar-fill { background: var(--htwk-silbergrau); }  /* baseline / reference */
+.htwk-bar-row.ref .label, .htwk-bar-row.ref .val { color: var(--htwk-muted); }
 .htwk-bar-row .val { font-family: var(--r-code-font); font-weight: 600; min-width: 3em; text-align: right; }
 
 /* --- Tables (clean, CD-flavoured) ---------------------------------------- */
