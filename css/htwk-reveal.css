@@ -118,9 +118,21 @@
 .reveal .deck-footer .who .ctx  { color: var(--htwk-muted); }
 .reveal .deck-footer .who .name { font-weight: 600; color: #000; }
 
-/* content stays vertically centred (reveal center:true); reserve a bottom    */
-/* safe-area so the centred block clears the persistent footer.               */
-.reveal .slides > section { box-sizing: border-box; padding-bottom: 6vh; }
+/* ---- Constant frame --------------------------------------------------------
+   Every section fills the slide and centres its content (use reveal center:false).
+   On CONTENT slides the heading is pinned to a constant top and the body is
+   centred in the space below it, so headings line up across slides AND content
+   stays vertically balanced. Title / divider centre as a whole.            */
+.reveal .slides > section {
+  box-sizing: border-box; height: 100%;
+  flex-direction: column; justify-content: center;
+  padding-bottom: 8vh;                 /* clear the persistent footer */
+}
+.reveal .slides > section.present { display: flex !important; }
+.reveal .slides > section:not(.htwk-title):not(.htwk-divider) { padding-top: 15%; }
+.reveal .slides > section:not(.htwk-title):not(.htwk-divider) > h2 {
+  position: absolute; top: 8%; left: 0; right: 0; margin: 0;
+}
 
 /* --- Data: horizontal QWK bars (muted blue, CD "wissenschaftlich") -------- */
 .htwk-bars { width: 100%; margin-top: 0.3em; font-size: 0.8em; }

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
   <!-- HTWK corporate-design theme (source of truth: htwk-branding skill) -->
-  <link rel="stylesheet" href="css/htwk-reveal.css?v=5">
+  <link rel="stylesheet" href="css/htwk-reveal.css?v=6">
   <!-- code highlighting (unused on most slides, harmless) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css">
 </head>
@@ -36,15 +36,13 @@
     <!-- ====================================================== 2. THE TASK -->
     <section data-background-color="#ffffff">
       <h2 class="htwk-ruled">The task: rubric-based ASAG for German</h2>
-      <div class="htwk-cols w-37">
+      <div class="htwk-cols" style="grid-template-columns: 1.6fr 1fr; gap: 3.2em; align-items: start;">
         <div>
           <p><strong>Dataset:</strong> ALICE-LP-1.0 — German STEM short answers (Chemistry, Biology, Physics, Math).</p>
-          <p><strong>Input:</strong> question + student answer + a textual <em>rubric</em>.<br>
-             <strong>Output:</strong> Correct / Partially correct / Incorrect.</p>
-          <p><strong>Metric:</strong> Quadratic Weighted Kappa (QWK).<br>
-             <strong>Size:</strong> 7,899 train · 5,176 test.</p>
+          <p><strong>Input:</strong> question + student answer + a textual <em>rubric</em>. &nbsp; <strong>Output:</strong> Correct / Partially correct / Incorrect.</p>
+          <p><strong>Metric:</strong> Quadratic Weighted Kappa (QWK). &nbsp; <strong>Size:</strong> 7,899 train · 5,176 test.</p>
         </div>
-        <div>
+        <div style="justify-self: end; text-align: right;">
           <table>
             <thead><tr><th></th><th>3-way</th><th>2-way</th></tr></thead>
             <tbody>
@@ -272,7 +270,7 @@
 <script>
   Reveal.initialize({
     hash: true,
-    center: true,
+    center: false,
     slideNumber: 'c/t',
     transition: 'fade',
     transitionSpeed: 'fast',
