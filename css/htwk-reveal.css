@@ -99,22 +99,26 @@
 .reveal section.htwk-divider h2 { font-size: 2.4em; font-weight: 900; color: #000; }
 .reveal section.htwk-divider .kicker { font-size: 0.7em; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 
-/* --- Logo + footer (Schutzzone respected via padding) -------------------- */
-.reveal .htwk-logo {
-  position: absolute; bottom: 3.2%; left: 3.5%; height: 5.4%;
-  z-index: 30;
+/* --- Persistent footer (CONSTANT on every slide) ------------------------- */
+/* Add ONCE as a sibling of .slides inside .reveal — NOT per slide. Sized in  */
+/* viewport units so height, position and logo sizes never vary between       */
+/* slides (per-section %-sizing is what makes chrome jump around).            */
+.reveal .deck-footer {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 8vh;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3.4vw; z-index: 40; pointer-events: none;
 }
-.reveal .htwk-logo img { height: 100%; width: auto; display: block; }
-/* WSE Research team mark (cube) — sits opposite the HTWK logo */
-.reveal .wse-logo { position: absolute; top: 5%; right: 4.5%; height: 13%; z-index: 30; }
-.reveal .wse-logo img { height: 100%; width: auto; display: block; }
-.reveal .htwk-footer {
-  position: absolute; bottom: 3.6%; right: 3.5%;
-  font-family: var(--r-code-font); font-size: 0.42em; color: var(--htwk-muted);
-  z-index: 30; text-align: right; letter-spacing: 0.02em;
+.reveal .deck-footer .brand { display: flex; align-items: center; gap: 1.6vw; }
+.reveal .deck-footer .f-htwk { height: 3.4vh; width: auto; display: block; }
+.reveal .deck-footer .f-wse  { height: 5vh;   width: auto; display: block; }
+.reveal .deck-footer .who {
+  font-family: var(--r-code-font); font-size: 1.7vh; color: var(--htwk-grau);
+  letter-spacing: 0.02em; text-align: right; line-height: 1.25;
 }
-/* hide chrome on the divider + title for a cleaner full-bleed look */
-.reveal section.htwk-divider .htwk-footer { color: rgba(0,0,0,0.55); }
+.reveal .deck-footer .who .name { font-weight: 600; color: #000; }
+
+/* constant frame: top-aligned content (center:false) + reserved footer area */
+.reveal .slides > section { box-sizing: border-box; padding-top: 1%; padding-bottom: 9vh; }
 
 /* --- Data: horizontal QWK bars (muted blue, CD "wissenschaftlich") -------- */
 .htwk-bars { width: 100%; margin-top: 0.3em; font-size: 0.8em; }
@@ -151,8 +155,11 @@
 .htwk-pipe .stage ul { margin: 0; padding-left: 1em; font-size: 0.85em; }
 .htwk-pipe .arrow { display: flex; align-items: center; color: var(--htwk-gelb); font-size: 1.8em; padding: 0 0.15em; font-weight: 900; }
 
-/* progress bar + controls in HTWK colours */
+/* progress bar in HTWK colours; slide number to top-right (clear of footer) */
 .reveal .progress { color: var(--htwk-gelb); }
-.reveal .controls { color: var(--htwk-blau); }
+.reveal .slide-number {
+  top: 10px; right: 12px; bottom: auto; left: auto; background: transparent;
+  color: var(--htwk-silbergrau); font-family: var(--r-code-font); font-size: 1.5vh;
+}
 
 /* speaker-notes readability handled by reveal's notes plugin */

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/theme/white.css" id="theme">
   <!-- HTWK corporate-design theme (source of truth: htwk-branding skill) -->
-  <link rel="stylesheet" href="css/htwk-reveal.css?v=2">
+  <link rel="stylesheet" href="css/htwk-reveal.css?v=4">
   <!-- code highlighting (unused on most slides, harmless) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/monokai.css">
 </head>
@@ -19,13 +19,11 @@
 
     <!-- ====================================================== 1. TITLE -->
     <section class="htwk-title htwk-tape" data-background-gradient="linear-gradient(90deg,#FFED00 0,#FFED00 3%,#ffffff 3%,#ffffff 97%,#FFED00 97%,#FFED00 100%)">
-      <div class="wse-logo"><img src="assets/wse-logo.png" alt="WSE Research"></div>
       <div class="eyebrow">WSE Research at BEA 2026 · Shared Task 2</div>
       <h1>Multi-Strategy Rubric-Based<br>Short Answer Scoring for German</h1>
       <div class="subtitle">A system description: rubric-conditioned prompting, LoRA fine-tuning, and weighted-vote aggregation on ALICE-LP-1.0</div>
       <div class="authors">Jonas Gwozdz · Andreas Both</div>
       <div class="meta">WSE Research, HTWK Leipzig · 21st BEA Workshop @ ACL 2026 · Poster #147 · 3 July 2026</div>
-      <div class="htwk-logo"><img src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig"></div>
       <aside class="notes">
         Hi, I'm Jonas Gwozdz from WSE Research at HTWK Leipzig. This is joint work with Andreas Both.
         I'll walk you through our submission to BEA 2026 Shared Task 2 — rubric-based short answer scoring for German.
@@ -60,8 +58,6 @@
             requiring rubric <em>generalization</em>.</p>
         </div>
       </div>
-      <div class="htwk-logo"><img src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig"></div>
-      <div class="htwk-footer">BEA 2026 · Shared Task 2 · #147</div>
       <aside class="notes">
         The task is automated short-answer grading in German, but with a twist: each item comes with a textual
         rubric that defines what counts as correct. We predict one of three labels, and we're scored with
@@ -87,8 +83,6 @@
           Incorrect — a tempting but dangerous shortcut for German STEM answers that can be legitimately short.</li>
         <li class="fragment"><strong>A quantitative + qualitative resource gap</strong> for German ASAG vs. English.</li>
       </ul>
-      <div class="htwk-logo"><img src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig"></div>
-      <div class="htwk-footer">BEA 2026 · Shared Task 2 · #147</div>
       <aside class="notes">
         Four things make this hard. First, the rubric carries the meaning — almost a quarter of the questions are
         so generic that without the rubric you literally can't grade them. Second, generalization: the unseen-question
@@ -121,8 +115,6 @@
       <p class="htwk-key" style="font-size:0.8em; margin-top:0.6em;">
         Key design choice: <strong>different tracks want different systems</strong>. An ensemble of comparable
         models wins on seen questions; a single large fine-tuned model generalizes best on unseen questions.</p>
-      <div class="htwk-logo"><img src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig"></div>
-      <div class="htwk-footer">BEA 2026 · Shared Task 2 · #147</div>
       <aside class="notes">
         Our system has three building blocks. Block one is prompting: we condition on the rubric and add a few
         carefully chosen examples — selected by TF-IDF similarity plus deliberate boundary cases, and we adapt how
@@ -148,8 +140,6 @@
       </table>
       <p style="font-size:0.72em; margin-top:0.5em;">9 teams · winner <strong>IWM-DKM</strong> (Meurers lab, IWM Tübingen).
         We trail the top system by <strong>0.006–0.017 QWK</strong> across the board — a very tight field.</p>
-      <div class="htwk-logo"><img src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig"></div>
-      <div class="htwk-footer">Official leaderboard · 7 Apr 2026</div>
       <aside class="notes">
         Here are the official results. We placed second on three of the four tracks, and third on the hardest one,
         track 4. The winner across the board was IWM-DKM, the Meurers lab in Tübingen — an established German ASAG
@@ -175,8 +165,6 @@
         <li><strong>Prompt ↔ model coupling:</strong> our German prompt works for Gemini &amp; Qwen3.5; XML/English helps Claude/GPT but <em>hurts</em> Gemini.</li>
         <li>Gemini 3 Flash is the best <em>single commercial API</em> model — at ~<strong>$0.0002 / answer</strong>.</li>
       </ul>
-      <div class="htwk-logo"><img src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig"></div>
-      <div class="htwk-footer">BEA 2026 · Shared Task 2 · #147</div>
       <aside class="notes">
         On the prompting side, the biggest lever by far is few-shot example selection — going from a rubric-only
         prompt to smart example selection buys about six QWK points. We pick examples by similarity plus deliberate
@@ -209,8 +197,6 @@
           </ul>
         </div>
       </div>
-      <div class="htwk-logo"><img src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig"></div>
-      <div class="htwk-footer">BEA 2026 · Shared Task 2 · #147</div>
       <aside class="notes">
         Now fine-tuning. We LoRA-tuned the Qwen family and evaluated out-of-sample, which is the honest estimate.
         Two open-source models — 14B and 32B — actually beat the commercial Gemini baseline on unbiased evaluation.
@@ -232,7 +218,6 @@
         <li><strong>Scaling saturates.</strong> ~32B was the sweet spot; 72B added nothing on this data.</li>
         <li><strong>Evaluate out-of-sample.</strong> In-sample trial QWK (~0.85, all-data) badly overstated true test performance (~0.77) — train on training data only for an honest estimate.</li>
       </ul>
-      <div class="htwk-footer">BEA 2026 · Shared Task 2 · #147</div>
       <aside class="notes">
         Four methodological takeaways. One: which examples you show matters more than clever prompt wording — and
         forcing the model to reason step-by-step actually hurt us by making it over-predict "partially correct".
@@ -257,8 +242,6 @@
       <p style="font-size:0.62em; margin-top:0.6em; color:#5b6468;">
         Code: github.com/WSE-research/bea2026-german-asag · Thank you! Find me at Poster #147.<br>
         Funded by BMBF (FKZ 03FHP239).</p>
-      <div class="htwk-logo"><img src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig"></div>
-      <div class="htwk-footer">Jonas Gwozdz · jonas.gwozdz@htwk-leipzig.de</div>
       <aside class="notes">
         To wrap up: competitive, open-source, rubric-based grading for German is feasible. We came within two
         hundredths of a QWK point of the best system on three tracks, with fine-tuned Qwen models that beat a
@@ -270,6 +253,14 @@
     </section>
 
   </div>
+
+  <footer class="deck-footer">
+    <div class="brand">
+      <img class="f-htwk" src="assets/htwk-logo-h-black.svg" alt="HTWK Leipzig">
+      <img class="f-wse" src="assets/wse-logo.png" alt="WSE Research">
+    </div>
+    <div class="who"><span class="name">Jonas Gwozdz</span> · jonas.gwozdz@htwk-leipzig.de</div>
+  </footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
@@ -278,13 +269,14 @@
 <script>
   Reveal.initialize({
     hash: true,
+    center: false,
     slideNumber: 'c/t',
     transition: 'fade',
     transitionSpeed: 'fast',
     width: 1280,
     height: 720,
     margin: 0.06,
-    controls: true,
+    controls: false,
     progress: true,
     plugins: [ RevealNotes, RevealHighlight ]
   });
