@@ -112,13 +112,15 @@
 .reveal .deck-footer .f-htwk { height: 3.4vh; width: auto; display: block; }
 .reveal .deck-footer .f-wse  { height: 5vh;   width: auto; display: block; }
 .reveal .deck-footer .who {
-  font-family: var(--r-code-font); font-size: 1.7vh; color: var(--htwk-grau);
-  letter-spacing: 0.02em; text-align: right; line-height: 1.25;
+  font-family: var(--r-code-font); font-size: 1.45vh; color: var(--htwk-grau);
+  letter-spacing: 0.02em; text-align: right; line-height: 1.5;
 }
+.reveal .deck-footer .who .ctx  { color: var(--htwk-muted); }
 .reveal .deck-footer .who .name { font-weight: 600; color: #000; }
 
-/* constant frame: top-aligned content (center:false) + reserved footer area */
-.reveal .slides > section { box-sizing: border-box; padding-top: 1%; padding-bottom: 9vh; }
+/* content stays vertically centred (reveal center:true); reserve a bottom    */
+/* safe-area so the centred block clears the persistent footer.               */
+.reveal .slides > section { box-sizing: border-box; padding-bottom: 6vh; }
 
 /* --- Data: horizontal QWK bars (muted blue, CD "wissenschaftlich") -------- */
 .htwk-bars { width: 100%; margin-top: 0.3em; font-size: 0.8em; }
